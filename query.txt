@@ -1,0 +1,46 @@
+1.Write a query to retrieve Customer Name, Order ID, Order Date, Amount of all customers who have placed orders
+SELECT 
+    Customers.Customer_Name, 
+    Orders.Order_ID, 
+    Orders.Order_Date, 
+    Orders.Amount
+FROM 
+    Customers
+JOIN 
+    Orders ON Customers.Customer_ID = Orders.Customer_ID;
+
+2.Write a query to calculate the total amount for only those customers who have placed an order.
+SELECT 
+    Customers.Customer_ID, 
+    Customers.Customer_Name, 
+    SUM(Orders.Amount) AS Total_Amount
+FROM 
+    Customers
+JOIN 
+    Orders ON Customers.Customer_ID = Orders.Customer_ID
+GROUP BY 
+    Customers.Customer_ID, Customers.Customer_Name;
+
+
+3.Write a query to display the order count for each Customer ID
+SELECT 
+    Customer_ID, 
+    COUNT(Order_ID) AS Order_Count
+FROM 
+    Orders
+GROUP BY 
+    Customer_ID;
+
+
+4.Write a query to output the customer names along with their orders for orders placed on or after August 12, 2023
+SELECT 
+    Customers.Customer_Name, 
+    Orders.Order_ID, 
+    Orders.Order_Date, 
+    Orders.Amount
+FROM 
+    Customers
+JOIN 
+    Orders ON Customers.Customer_ID = Orders.Customer_ID
+WHERE 
+    Orders.Order_Date >= '2023-08-12';
